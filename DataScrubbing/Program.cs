@@ -1,32 +1,41 @@
-﻿namespace DataScrubbing
+﻿//4-13 , Exercise 1
+//5-3, add practice on string
+namespace DataScrubbing
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string phone = "817-555-1212   ";
             bool toContinue = true;
             while (toContinue)
             {
-
-
                 Console.WriteLine("Please enter the phone number: ");
-                phone = Console.ReadLine();
+                string phone = Console.ReadLine();
 
                 Console.WriteLine("Please enter your choice: 1 Trim, 2 remove , 3 remove and replace");
-                string scrubbedPhone = "";
                 string choiceInput = Console.ReadLine();
+                string charToRemove;
                 if (int.TryParse(choiceInput, out int choice))
                 {
                     switch (choice)
                     {
                         case 1:
-                            scrubbedPhone = ScrubPhone(phone);
-                            Console.WriteLine(scrubbedPhone);
+                            ScrubPhone(ref phone);
+                            Console.WriteLine(phone);
                             break;
                         case 2:
+                            Console.WriteLine("Please enter the char to remove");
+                            charToRemove = Console.ReadLine();
+                            ScrubPhone(ref phone, char.Parse(charToRemove));
+                            Console.WriteLine(phone);
                             break;
                         case 3:
+                            Console.WriteLine("Please enter the char to remove : ");
+                            charToRemove = Console.ReadLine();
+                            Console.WriteLine("Please enter the char to replace with : ");
+                            string charToReplaceWith = Console.ReadLine();
+                            ScrubPhone(ref phone, char.Parse(charToRemove), char.Parse(charToReplaceWith));
+                            Console.WriteLine(phone);
                             break;
                         default:
                             Console.WriteLine("Invalid choice");
@@ -34,16 +43,15 @@
                     }
                 }
 
-                
                 Console.WriteLine("Do you want to continue? (y/n) :");
                 string command = Console.ReadLine();
                 toContinue = command == "y";
             }
         }
 
-        public static string ScrubPhone(string? phone)
+        public static void ScrubPhone(ref string phone)
         {
-            return phone.Trim();
+            phone = phone.Trim();
         }
 
         public static void ScrubPhone(ref string? phoneNumber, char charToRemove)

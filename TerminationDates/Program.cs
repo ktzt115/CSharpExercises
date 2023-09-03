@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿//5-12 , Exercise 2
 
 namespace TerminationDates
 {
@@ -17,7 +17,6 @@ namespace TerminationDates
             {
                 Console.WriteLine("Invalid Date");
             }
-            
         }
     }
 }

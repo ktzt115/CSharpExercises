@@ -1,4 +1,5 @@
-﻿int currentHour = DateTime.Now.Hour;
+﻿//5-12 , Exercise 1
+int currentHour = DateTime.Now.Hour;
 if(currentHour >= 0  && currentHour < 5)
 {
     Console.WriteLine("Welcome to the late shift!");

@@ -1,4 +1,5 @@
-﻿namespace NameParser
+﻿//5-4 , Exercie 2
+namespace NameParser
 {
     internal class Program
     {
