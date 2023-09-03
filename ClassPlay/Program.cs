@@ -1,4 +1,7 @@
-﻿namespace ClassPlay
+﻿//workbook 2, 1-8, Exercise 1
+//1-15 , add more constructors
+//1-22 , implement promote
+namespace ClassPlay
 {
     internal class Program
     {
@@ -38,6 +41,7 @@
 
         }
 
+        //previous method
         private static void DisplayEmployee(Employee employee)
         {
             Console.WriteLine(employee.FirstName);
