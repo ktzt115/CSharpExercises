@@ -1,4 +1,5 @@
-﻿namespace FileTest
+﻿//7-14 , Exercise 1
+namespace FileTest
 {
     internal class Program
     {
@@ -24,7 +25,7 @@
                 var fileWriter =  file.CreateText();
                 using (fileWriter)
                 {
-                    fileWriter.WriteLine("Hi I am testing you. testing yahoeoeoeoeoe");
+                    fileWriter.WriteLine("Hi I am testing you. testing result should be all good!");
                     fileWriter.Close();
                 }
             }

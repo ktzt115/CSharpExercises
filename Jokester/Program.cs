@@ -1,4 +1,6 @@
-﻿namespace Jokester
+﻿//6-13, Optional Exercise
+
+namespace Jokester
 {
     internal class Program
     {

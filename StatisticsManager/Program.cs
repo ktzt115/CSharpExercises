@@ -1,4 +1,6 @@
-﻿namespace StatisticsManager
+﻿//6-13 , Exercise 1
+
+namespace StatisticsManager
 {
     internal class Program
     {

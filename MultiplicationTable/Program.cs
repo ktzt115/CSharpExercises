@@ -1,4 +1,5 @@
-﻿namespace MultiplicationTable
+﻿//6-18 , (Optional, Exercise 1) 
+namespace MultiplicationTable
 {
     internal class Program
     {
