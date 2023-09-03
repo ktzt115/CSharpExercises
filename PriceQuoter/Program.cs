@@ -1,17 +1,27 @@
 ﻿// See https://aka.ms/new-console-template for more information
+// 3-9 ,  Exercise 1
+// 3-18 ,  Exercise 1 add menu
 
-using System.Linq;
 var products = new List<Product>()
 {
     new Product("BG-127"), new Product("WRTR-28"), new Product("GUAC-8")
 };
 
-Product? selectedProduct = null;
-string continueInput = "y";
-while (continueInput.ToLower().Equals("y"))
+while (true) 
 {
-    string productCodeInput = "";
-    int productChoice = 0;
+    Product? selectedProduct = null;
+    Console.WriteLine("Please type the following command accordingly?\n" +
+    "GET-QUOTE : Place an order\n" +
+    "QUIT : Quit the program");
+    string continueInput = Console.ReadLine();
+    bool isContinue = continueInput.ToLower().Equals("get-quote"); 
+    if (!isContinue)
+    {
+        break;
+    }
+
+    string productCodeInput;
+    int productChoice;
     while (true)
     {
         Console.WriteLine("Please choose the following products. (1)  : BG-127 , (2) : WRTR-28 , (3) :  GUAC-8");
@@ -56,14 +66,7 @@ while (continueInput.ToLower().Equals("y"))
                 $"Your Final Discounted Price will be : {selectedProduct.GetLargeOrderDiscountedPrice()}");
         }
     }
-
-    Console.WriteLine("Do you like to order new product? (y/n)");
-    selectedProduct = null;
-    continueInput = Console.ReadLine();
 }
-
-
-
 
 internal class Product
 {
