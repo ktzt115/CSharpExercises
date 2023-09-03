@@ -1,4 +1,5 @@
-﻿int x1 = 2;
+﻿//excises 2-34 , 3
+int x1 = 2;
 int y1 = 0;
 int x2 = 4;
 int y2 = 0;
