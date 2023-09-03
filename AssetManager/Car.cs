@@ -1,10 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AssetManager
 {
@@ -25,19 +19,19 @@ namespace AssetManager
 
         public override double GetValue()
         {
-            double depreciationCost;
+            double depreciatedCost;
             if ((DateTime.Today.Year - ModelYear) < 7)
             {
-                depreciationCost = OdometerReading / 5000 * 0.2;
-                depreciationCost = depreciationCost > (0.9 * OriginalCost) ? OriginalCost * 0.9 : depreciationCost;
-
+                depreciatedCost = OriginalCost * ( OdometerReading / 5000 * 0.02);
+                depreciatedCost = depreciatedCost > (0.9 * OriginalCost) ? OriginalCost * 0.9 : depreciatedCost;
+                depreciatedCost = OriginalCost - depreciatedCost;
             }
             else
             {
-                depreciationCost = OdometerReading < 10000 ? OriginalCost - OriginalCost * 0.7 : OriginalCost - OriginalCost * 0.9;
+                depreciatedCost = OdometerReading < 10000 ? OriginalCost - OriginalCost * 0.7 : OriginalCost - OriginalCost * 0.9;
 
             }
-            return depreciationCost;
+            return depreciatedCost;
         }
 
         public override string ToString()
