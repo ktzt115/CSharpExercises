@@ -1,4 +1,5 @@
-﻿namespace FileProcessing
+﻿//workbook 2, 2-23, Exercise 1
+namespace FileProcessing
 {
     public class TimeCard
     {
@@ -22,7 +23,6 @@
             {
                 throw new InvalidCastException("The data format provided is not valid one. Please correct the data.");
             }
-            
         }
 
         public double GetGrossPay()

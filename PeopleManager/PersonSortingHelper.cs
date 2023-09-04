@@ -41,7 +41,14 @@ namespace PeopleManager
     {
         public int Compare(Person x, Person y)
         {
-            throw new NotImplementedException();
+            if(x.State.CompareTo(y.State) == 0)
+            {
+                return x.City.CompareTo(y.City);
+            }
+            else
+            {
+                return x.State.CompareTo(y.State);
+            }
         }
     }
 }

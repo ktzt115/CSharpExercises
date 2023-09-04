@@ -31,7 +31,7 @@ public class Person : IComparable<Person>
         Age++;
     }
 
-    public void Display()
+    public virtual void Display()
     {
         Console.WriteLine(ToString());
     }
