@@ -1,5 +1,5 @@
 ﻿//Workbook 2, 4-13 Exercise 1
-
+//Workbook 2, 4-19 Exercise 1
 using Newtonsoft.Json;
 
 namespace LINQGames
@@ -32,10 +32,10 @@ namespace LINQGames
             Console.WriteLine(string.Join(',', suppliers.Select(x=> x.Name)));
 
             Console.WriteLine("\n\nProducts with cost < $5");
-            var cheapProducts = products.Where(x => x.Price < 5);
+            var cheapProducts = products.Where(x => x.Price <= 5);
             foreach (var product in cheapProducts)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(product));
+                Console.WriteLine(product);
             }
 
             Console.WriteLine("\n\nProducts with low stock (less than 10)");
@@ -47,9 +47,51 @@ namespace LINQGames
 
             foreach (var product in lowStockProducts)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(product));
+                Console.WriteLine(product);
             }
 
+            var supplier201 = suppliers.FirstOrDefault(x => x.SupplierId == 201);
+            if(supplier201 != null)
+            {
+                Console.WriteLine("\n\nInformation about Supplier 201");
+                Console.WriteLine(supplier201);
+            }
+
+            Console.WriteLine("\n\nFirst Products that costs $5 or more");
+            var notCheapProducts = products.Where(x => x.Price > 5);
+            Console.WriteLine(notCheapProducts.FirstOrDefault());
+
+            Console.WriteLine($"\n\n {cheapProducts.Count()} products cost $5 or less");
+
+            var toReorder = GetItemsToBeReordered(products);
+
+            Console.WriteLine("\n\nProducts to reorder");
+            foreach (var product in toReorder)
+            {
+                Console.WriteLine(product);
+            }
+
+            var allInfos = from p in products
+                           join s in suppliers
+                           on p.SupplierId equals s.SupplierId
+                           select new
+                           {
+                               p.ProductName,
+                               p.Price,
+                               SupplierName = s.Name
+                           };
+
+            Console.WriteLine();
+            foreach(var info in allInfos)
+            {
+                Console.WriteLine(JsonConvert.SerializeObject(info));
+            }
+
+        }
+
+        public static List<Product> GetItemsToBeReordered(List<Product> products)
+        {
+            return (from p in products where p.QuantityOnHand <=10 select p).ToList();
         }
     }
 }

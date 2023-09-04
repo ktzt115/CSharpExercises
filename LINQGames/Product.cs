@@ -20,7 +20,7 @@
         public override string ToString()
         {
             return $"{ProductId} - {ProductName} - {Price:C} - "
-            + "Qty: {QuantityOnHand} - ";
+            + $"Qty: {QuantityOnHand} - ";
         }
     }
 
