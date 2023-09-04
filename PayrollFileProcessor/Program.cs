@@ -27,7 +27,7 @@ namespace PayrollFileProcessor
                         string name = data[1];
                         double payrate = double.Parse(data[2]);
                         double hour = double.Parse(data[3]);
-                        double grossPay = hour * payrate;
+                        double grossPay = hour > 40 ? hour * payrate * 1.5 :  hour * payrate;
                         grossPaySum += grossPay;
                         var toWrite = $"Total Gross Pay for {name} is {grossPay}";
                         Console.WriteLine(toWrite);

@@ -20,7 +20,7 @@
             }
             else
             {
-                throw new InvalidCastException("The data format provided is not valid one. Please modify the file.");
+                throw new InvalidCastException("The data format provided is not valid one. Please correct the data.");
             }
             
         }

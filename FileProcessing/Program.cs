@@ -6,44 +6,58 @@ namespace FileProcessing
     {
         static void Main(string[] args)
         {
-            try
+            var files = new List<string>() { "PayrollData1.txt", "PayrollData2.txt", "PayrollData3.txt" };
+
+            foreach (var file in files)
             {
-                var fileName = "PayrollData3.txt";
-                var fileFullPath = @$"C:\Users\khin.thuzar.thin\Downloads\KPayRolls\{fileName}";
-                if (File.Exists(fileFullPath))
+                Console.WriteLine($"Processing for {file} started");
+                try
                 {
-                    using (StreamReader reader = new StreamReader(fileFullPath))
+                    var fileFullPath = @$"C:\Users\khin.thuzar.thin\Downloads\KPayRolls\{file}";
+                    if (File.Exists(fileFullPath))
                     {
-                        while (!reader.EndOfStream)
+                        using (StreamReader reader = new StreamReader(fileFullPath))
                         {
-                            var data = reader.ReadLine();
-                            TimeCard tc = TimeCard.CreateTimeCard(data);
-                            Console.WriteLine($"GrossPay for {tc.Name} : {tc.GetGrossPay():N2}");
+                            while (!reader.EndOfStream)
+                            {
+                                try
+                                {
+                                    string data = reader.ReadLine();
+                                    TimeCard tc = TimeCard.CreateTimeCard(data);
+                                    Console.WriteLine($"GrossPay for {tc.Name}\t{tc.GetGrossPay():N2}");
+                                }
+                                catch (InvalidCastException castException)
+                                {
+                                    Console.WriteLine(castException.Message);
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.WriteLine("Some Exception happened.");
+                                }
+                            }
                         }
                     }
+                    else
+                    {
+                        Console.WriteLine("File does not exists! Please provide correct file");
+                    }
                 }
-                else
+                catch (FileNotFoundException fe)
                 {
-                    Console.WriteLine("File Does not exists");
+                    Console.WriteLine(fe.Message);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Some Exception happened.");
+                }
+                finally
+                {
+                    Console.WriteLine($"Processing for {file} Complete");
+                    Console.WriteLine();
                 }
             }
-            catch(InvalidCastException castException)
-            {
-                Console.WriteLine(castException.Message);
-            }
-            catch (FileNotFoundException ex)
-            {
-                Console.WriteLine("File does not exists! Please provide correct file");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Some Exception happened.");
-            }
-            finally
-            {
-                Console.WriteLine("File Processing Complete");
-            }
-            
+
+
         }
     }
 }
